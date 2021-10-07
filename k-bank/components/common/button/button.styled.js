@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 export const ButtonContainer = styled.button`
-  height: 53px;
-  font-size: 18px;
+  height: 42px;
+  font-size: 12px;
   font-weight: bold;
   padding: 0.8rem;
   border-radius: 5px;
