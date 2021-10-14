@@ -6,6 +6,7 @@ import { OverlapInput, ProfileContainer } from "./Join.styled";
 import Image from "next/image";
 import Logo from "../../../assets/images/k-bankBigLogo.svg";
 import useInput from "../../../hook/useInput";
+import { useEffect } from "react";
 const index = () => {
   const onSubmit = () => {
     console.log("회원가입 되었습니다");
@@ -13,10 +14,25 @@ const index = () => {
   const id = useInput();
   const password = useInput();
   const passwordVerify = useInput();
-  const email = useInput();
+  const phoneNumber = useInput();
   const RRN = useInput();
   const name = useInput();
   const nickName = useInput();
+
+  useEffect(() => {
+    if (phoneNumber.value) {
+      phoneNumber.setValue(
+        phoneNumber.value
+          .replace(/-/g, "")
+          .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+      );
+    }
+    if (RRN.value) {
+      RRN.setValue(
+        RRN.value.replace(/-/g, "").replace(/(\d{6})(\d{1})/, "$1-$2")
+      );
+    }
+  }, [phoneNumber.value, phoneNumber.setValue, RRN.value, RRN.setValue]);
   return (
     <Form hasSubmit submitText="회원가입" onSubmit={onSubmit}>
       <ProfileContainer>
@@ -39,23 +55,20 @@ const index = () => {
         <Input value={id.value} onChange={id.onChange} placeholder="아이디" />
         <Button>중복확인</Button>
       </OverlapInput>
-      <OverlapInput>
-        <Input
-          value={password.value}
-          onChange={password.onChange}
-          placeholder="비밀번호"
-        />
-        <Button>중복확인</Button>
-      </OverlapInput>
+      <Input
+        value={password.value}
+        onChange={password.onChange}
+        placeholder="비밀번호"
+      />
       <Input
         value={passwordVerify.value}
         onChange={passwordVerify.onChange}
         placeholder="비밀번호 확인"
       />
       <Input
-        value={email.value}
-        onChange={email.onChange}
-        placeholder="이메일"
+        value={phoneNumber.value}
+        onChange={phoneNumber.onChange}
+        placeholder="전화번호"
       />
       <Input
         value={RRN.value}
