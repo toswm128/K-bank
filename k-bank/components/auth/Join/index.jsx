@@ -5,10 +5,18 @@ import Button from "../../common/Button";
 import { OverlapInput, ProfileContainer } from "./Join.styled";
 import Image from "next/image";
 import Logo from "../../../assets/images/k-bankBigLogo.svg";
+import useInput from "../../../hook/useInput";
 const index = () => {
   const onSubmit = () => {
     console.log("회원가입 되었습니다");
   };
+  const id = useInput();
+  const password = useInput();
+  const passwordVerify = useInput();
+  const email = useInput();
+  const RRN = useInput();
+  const name = useInput();
+  const nickName = useInput();
   return (
     <Form hasSubmit submitText="회원가입" onSubmit={onSubmit}>
       <ProfileContainer>
@@ -28,19 +36,39 @@ const index = () => {
         </div>
       </ProfileContainer>
       <OverlapInput>
-        <Input placeholder="아이디" />
+        <Input value={id.value} onChange={id.onChange} placeholder="아이디" />
         <Button>중복확인</Button>
       </OverlapInput>
       <OverlapInput>
-        <Input placeholder="비밀번호" />
+        <Input
+          value={password.value}
+          onChange={password.onChange}
+          placeholder="비밀번호"
+        />
         <Button>중복확인</Button>
       </OverlapInput>
-      <Input placeholder="비밀번호 확인" />
-      <Input placeholder="이메일" />
-      <Input placeholder="이름" />
-      <Input placeholder="주민등록번호" />
+      <Input
+        value={passwordVerify.value}
+        onChange={passwordVerify.onChange}
+        placeholder="비밀번호 확인"
+      />
+      <Input
+        value={email.value}
+        onChange={email.onChange}
+        placeholder="이메일"
+      />
+      <Input
+        value={RRN.value}
+        onChange={RRN.onChange}
+        placeholder="주민등록번호"
+      />
+      <Input value={name.value} onChange={name.onChange} placeholder="이름" />
       <OverlapInput>
-        <Input placeholder="닉네임" />
+        <Input
+          value={nickName.value}
+          onChange={nickName.onChange}
+          placeholder="닉네임"
+        />
         <Button>중복확인</Button>
       </OverlapInput>
     </Form>
