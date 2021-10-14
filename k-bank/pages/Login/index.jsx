@@ -1,16 +1,12 @@
-import React from "react";
-import Input from "../../components/common/Input";
-import Form from "../../components/common/Form";
-
+import Login from "../../components/auth/Login";
+import { LoginContainer } from "./loginPage.styled";
+import Link from "next/link";
 const index = () => {
-  const onSubmit = () => {
-    console.log("로그인 되었습니다!");
-  };
   return (
-    <Form hasSubmit submitText="로그인" onSubmit={onSubmit}>
-      <Input />
-      <Input />
-    </Form>
+    <LoginContainer>
+      <Login />
+      <Link href="join">회원이 아니신가요?</Link>
+    </LoginContainer>
   );
 };
 

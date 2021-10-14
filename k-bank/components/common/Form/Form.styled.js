@@ -6,7 +6,7 @@ export const FormContariner = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border-radius: 10px;
-  box-shadow: 5px 4px 10px 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  /* border-radius: 10px; */
+  /* box-shadow: 5px 4px 10px 10px rgba(0, 0, 0, 0.1); */
+  /* padding: 20px; */
 `;

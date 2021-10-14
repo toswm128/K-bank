@@ -8,7 +8,7 @@ export const InputContainer = styled.input`
   padding: 0 9px 0 9px;
   border: 1px solid gray;
   border-radius: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-size: 12px;
   font-weight: bold;
   transition: ease-in-out 0.2s;
