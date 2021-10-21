@@ -33,6 +33,7 @@ const index = () => {
       );
     }
   }, [phoneNumber.value, phoneNumber.setValue, RRN.value, RRN.setValue]);
+
   return (
     <Form hasSubmit submitText="회원가입" onSubmit={onSubmit}>
       <ProfileContainer>
