@@ -4,12 +4,16 @@ import Form from "../../common/Form";
 import Logo from "../../../assets/images/k-bankBigLogo.svg";
 import Image from "next/image";
 import useInput from "../../../hook/useInput";
+import useAuth from "../../../hook/Recoil/useAuth";
 
 const index = () => {
+  const { login } = useAuth();
+
   const id = useInput();
   const password = useInput();
   const onSubmit = () => {
     console.log("로그인 되었습니다!");
+    login();
   };
   return (
     <Form hasSubmit submitText="로그인" onSubmit={onSubmit}>

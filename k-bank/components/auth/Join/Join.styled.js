@@ -36,8 +36,23 @@ export const ProfileContainer = styled.div`
     align-items: flex-end;
     font-size: 12px;
     color: #aaa;
-    button {
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
       width: 100%;
+      height: 42px;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 0.8rem;
+      border-radius: 5px;
+      border: none;
+      background-color: #ff355d;
+      cursor: pointer;
+      color: white;
+      border: 2px solid #ff355d;
+      text-align: center;
     }
   }
 `;
