@@ -5,15 +5,16 @@ import Logo from "../../../assets/images/k-bankBigLogo.svg";
 import Image from "next/image";
 import useInput from "../../../hook/useInput";
 import useAuth from "../../../hook/Recoil/useAuth";
+import axios from "axios";
 
 const index = () => {
-  const { login } = useAuth();
+  const { useLogin } = useAuth();
 
   const id = useInput();
   const password = useInput();
-  const onSubmit = () => {
-    console.log("로그인 되었습니다!");
-    login();
+  const onSubmit = async () => {
+    const loginData = { id: id.value, pwd: password.value };
+    useLogin(loginData);
   };
   return (
     <Form hasSubmit submitText="로그인" onSubmit={onSubmit}>

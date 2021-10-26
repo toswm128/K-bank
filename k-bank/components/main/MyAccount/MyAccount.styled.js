@@ -41,7 +41,7 @@ export const MyAccountInfo = styled.div`
   align-items: center;
   color: white;
   h1 {
-    flex: 1;
+    flex: 3;
     font-size: 24px;
     font-weight: bold;
     margin: 0;
@@ -51,6 +51,13 @@ export const MyAccountInfo = styled.div`
       font-weight: normal;
       display: inline;
     }
+  }
+  button {
+    background-color: white;
+    color: #ff355d;
+    width: 62.5px;
+    height: 42px;
+    border-radius: 10px;
   }
   div {
     flex: 1;
