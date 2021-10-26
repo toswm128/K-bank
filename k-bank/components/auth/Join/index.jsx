@@ -5,18 +5,22 @@ import Button from "../../common/Button";
 import { OverlapInput, ProfileContainer } from "./Join.styled";
 import useInput from "../../../hook/useInput";
 import { useEffect } from "react";
+import useAuth from "../../../hook/Recoil/useAuth";
+import useJoin from "../../../hook/Recoil/useJoin";
 
 const index = () => {
-  const [formFile, setFile] = useState();
-  const [preview, setPreview] = useState();
+  const profile = useJoin().profileInput();
+  const preview = useJoin().previewInput();
 
-  const id = useInput();
-  const password = useInput();
-  const passwordVerify = useInput();
-  const phoneNumber = useInput();
-  const RRN = useInput();
-  const name = useInput();
-  const nickName = useInput();
+  const id = useJoin().idInput();
+  const password = useJoin().passwordInput();
+  const passwordVerify = useJoin().passwordVerifyInput();
+  const phoneNumber = useJoin().phoneNumberInput();
+  const ssn = useJoin().ssnInput();
+  const name = useJoin().nameInput();
+  const nickName = useJoin().nickNameInput();
+
+  const { join } = useJoin();
 
   const handleFileInput = useCallback(e => {
     const imageFileExtensions = [
@@ -41,24 +45,16 @@ const index = () => {
     }
 
     if (file.length !== 0) {
-      setFile(file);
+      profile.setValue(file);
 
-      setPreview(URL.createObjectURL(file));
+      preview.setValue(URL.createObjectURL(file));
     }
   }, []);
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     console.log("회원가입 되었습니다");
-    const files = new FormData();
 
-    files.append("file", formFile);
-    files.append("id", id.value);
-    files.append("password", password.value);
-    files.append("passwordVerify", passwordVerify.value);
-    files.append("phoneNumber", phoneNumber.value);
-    files.append("RRN", RRN.value);
-    files.append("name", name.value);
-    files.append("nickName", nickName.value);
+    join();
   };
 
   useEffect(() => {
@@ -69,12 +65,12 @@ const index = () => {
           .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
       );
     }
-    if (RRN.value) {
-      RRN.setValue(
-        RRN.value.replace(/-/g, "").replace(/(\d{6})(\d{1})/, "$1-$2")
+    if (ssn.value) {
+      ssn.setValue(
+        ssn.value.replace(/-/g, "").replace(/(\d{6})(\d{1})/, "$1-$2")
       );
     }
-  }, [phoneNumber.value, phoneNumber.setValue, RRN.value, RRN.setValue]);
+  }, [phoneNumber.value, phoneNumber.setValue, ssn.value, ssn.setValue]);
 
   return (
     <Form hasSubmit submitText="회원가입" onSubmit={onSubmit}>
@@ -83,8 +79,8 @@ const index = () => {
           <img
             className="profile_img_item"
             src={
-              preview
-                ? preview
+              preview.value
+                ? preview.value
                 : "https://img.hankyung.com/photo/201908/BF.20281777.1.jpg"
             }
             alt=""
@@ -123,8 +119,8 @@ const index = () => {
         placeholder="전화번호"
       />
       <Input
-        value={RRN.value}
-        onChange={RRN.onChange}
+        value={ssn.value}
+        onChange={ssn.onChange}
         placeholder="주민등록번호"
       />
       <Input value={name.value} onChange={name.onChange} placeholder="이름" />
