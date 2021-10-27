@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import useJoin from "../../../hook/Recoil/useJoin";
 import useKeyPad from "../../../hook/Recoil/useKeyPad";
 import { SimplePwdContainer, SimplePwdList } from "./SimplePwd.styled";
@@ -10,6 +10,9 @@ const index = () => {
   const { openKeyPad, keyPadStateValue } = useKeyPad();
   const ketPadInput = useRef();
   console.log(ketPadInput);
+  useEffect(() => {
+    simplePwd.setValue(keyPadStateValue.KeyPadValue);
+  }, [keyPadStateValue.KeyPadValue]);
   return (
     <SimplePwdContainer>
       <SimplePwdList onClick={openKeyPad}>
@@ -20,17 +23,6 @@ const index = () => {
         <div>{keyPadStateValue.KeyPadValue[4]}</div>
         <div>{keyPadStateValue.KeyPadValue[5]}</div>
       </SimplePwdList>
-      <Form>
-        <input
-          value={keyPadStateValue.KeyPadValue}
-          onChange={simplePwd.onChange}
-          onClick={() => {
-            openKeyPad();
-            ketPadInput.current.blur();
-          }}
-          ref={ketPadInput}
-        />
-      </Form>
     </SimplePwdContainer>
   );
 };

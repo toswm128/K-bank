@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const SimplePwdContainer = styled.div`
   input {
-    display: none;
+    /* display: none; */
   }
 `;
 

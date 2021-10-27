@@ -2,15 +2,13 @@ import React from "react";
 import { KeyPadContainer, KeyPadNumList } from "./keyPad.styled";
 import Button from "../Button";
 import useKeyPad from "../../../hook/Recoil/useKeyPad";
-import useJoin from "../../../hook/Recoil/useJoin";
-const index = () => {
+const index = ({ submit }) => {
   const {
     closeKeyPad,
     changeSetKeyPadValue,
     deleteSetKeyPadValue,
     keyPadStateValue,
   } = useKeyPad();
-  const { join } = useJoin();
   return (
     <KeyPadContainer>
       <KeyPadNumList>
@@ -92,9 +90,9 @@ const index = () => {
           0
         </Button>
         <Button
-          onClick={() => {
+          onClick={async () => {
+            await submit();
             closeKeyPad();
-            join();
           }}
         >
           확인
