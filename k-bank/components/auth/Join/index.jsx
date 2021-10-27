@@ -7,8 +7,11 @@ import useInput from "../../../hook/useInput";
 import { useEffect } from "react";
 import useAuth from "../../../hook/Recoil/useAuth";
 import useJoin from "../../../hook/Recoil/useJoin";
+import { useRouter } from "next/dist/client/router";
 
 const index = () => {
+  const router = useRouter();
+
   const profile = useJoin().profileInput();
   const preview = useJoin().previewInput();
 
@@ -20,7 +23,7 @@ const index = () => {
   const name = useJoin().nameInput();
   const nickName = useJoin().nickNameInput();
 
-  const { join } = useJoin();
+  const { checkJoinData } = useJoin();
 
   const handleFileInput = useCallback(e => {
     const imageFileExtensions = [
@@ -51,10 +54,13 @@ const index = () => {
     }
   }, []);
 
-  const onSubmit = async () => {
-    console.log("회원가입 되었습니다");
+  const onSubmit = () => {
+    checkJoinData()
+      ? router.push("/join/simplePwd")
+      : alert("정보를 입력해주세요");
 
-    join();
+    //then
+    //join 후에 실행할거 들어갈 곳
   };
 
   useEffect(() => {

@@ -55,7 +55,7 @@ export const nickNameState = atom({
 
 export const agreeState = atom({
   key: "auth/agree",
-  default: false,
+  default: true,
 });
 
 export const simplePwdState = atom({

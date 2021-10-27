@@ -84,6 +84,12 @@ const useJoin = () => {
     }
   };
 
+  const checkJoinData = () => {
+    return (
+      profile & id & password & phoneNumber & ssn & name & nickName & agree
+    );
+  };
+
   return {
     profileInput,
     previewInput,
@@ -97,6 +103,7 @@ const useJoin = () => {
     agreeInput,
     simplePwdInput,
     join,
+    checkJoinData,
   };
 };
 
