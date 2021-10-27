@@ -2,8 +2,15 @@ import React from "react";
 import { KeyPadContainer, KeyPadNumList } from "./keyPad.styled";
 import Button from "../Button";
 import useKeyPad from "../../../hook/Recoil/useKeyPad";
+import useJoin from "../../../hook/Recoil/useJoin";
 const index = () => {
-  const { closeKeyPad, changeSetKeyPadValue, keyPadStateValue } = useKeyPad();
+  const {
+    closeKeyPad,
+    changeSetKeyPadValue,
+    deleteSetKeyPadValue,
+    keyPadStateValue,
+  } = useKeyPad();
+  const { join } = useJoin();
   return (
     <KeyPadContainer>
       <KeyPadNumList>
@@ -76,7 +83,7 @@ const index = () => {
         </Button>
       </KeyPadNumList>
       <KeyPadNumList>
-        <Button onClick={closeKeyPad}>ㅡ</Button>
+        <Button onClick={deleteSetKeyPadValue}>취소</Button>
         <Button
           onClick={() =>
             changeSetKeyPadValue(keyPadStateValue.KeyPadValue + "0")
@@ -85,11 +92,12 @@ const index = () => {
           0
         </Button>
         <Button
-          onClick={() =>
-            changeSetKeyPadValue(keyPadStateValue.KeyPadValue.slice(0, -1))
-          }
+          onClick={() => {
+            closeKeyPad();
+            join();
+          }}
         >
-          취소
+          확인
         </Button>
       </KeyPadNumList>
     </KeyPadContainer>

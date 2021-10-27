@@ -17,7 +17,11 @@ const useKeyPad = () => {
   };
 
   const changeSetKeyPadValue = value => {
-    setKeyPadValue(value);
+    !KeyPadValue[5] && setKeyPadValue(value);
+  };
+
+  const deleteSetKeyPadValue = () => {
+    KeyPadValue[0] && setKeyPadValue(KeyPadValue.slice(0, -1));
   };
 
   const keyPadStateValue = {
@@ -25,7 +29,13 @@ const useKeyPad = () => {
     KeyPadValue,
   };
 
-  return { openKeyPad, closeKeyPad, changeSetKeyPadValue, keyPadStateValue };
+  return {
+    openKeyPad,
+    closeKeyPad,
+    changeSetKeyPadValue,
+    deleteSetKeyPadValue,
+    keyPadStateValue,
+  };
 };
 
 export default useKeyPad;
