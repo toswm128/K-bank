@@ -2,12 +2,13 @@ import React, { useCallback, useState } from "react";
 import Input from "../../common/Input";
 import Form from "../../common/Form";
 import Button from "../../common/Button";
-import { OverlapInput, ProfileContainer } from "./Join.styled";
+import { JoinContainer, OverlapInput, ProfileContainer } from "./Join.styled";
 import useInput from "../../../hook/useInput";
 import { useEffect } from "react";
 import useAuth from "../../../hook/Recoil/useAuth";
 import useJoin from "../../../hook/Recoil/useJoin";
 import { useRouter } from "next/dist/client/router";
+import useKeyPad from "../../../hook/Recoil/useKeyPad";
 
 const index = () => {
   const router = useRouter();
@@ -22,8 +23,10 @@ const index = () => {
   const ssn = useJoin().ssnInput();
   const name = useJoin().nameInput();
   const nickName = useJoin().nickNameInput();
+  const agree = useJoin().agreeInput();
 
   const { checkJoinData } = useJoin();
+  const { openKeyPad } = useKeyPad();
 
   const handleFileInput = useCallback(e => {
     const imageFileExtensions = [
@@ -53,14 +56,13 @@ const index = () => {
       preview.setValue(URL.createObjectURL(file));
     }
   }, []);
+  // 사진 받기
 
   const onSubmit = () => {
-    checkJoinData()
-      ? router.push("/join/simplePwd")
-      : alert("정보를 입력해주세요");
-
-    //then
-    //join 후에 실행할거 들어갈 곳
+    if (checkJoinData()) {
+      openKeyPad();
+      router.push("/join/simplePwd");
+    } else alert("정보를 입력해주세요");
   };
 
   useEffect(() => {
@@ -77,68 +79,80 @@ const index = () => {
       );
     }
   }, [phoneNumber.value, phoneNumber.setValue, ssn.value, ssn.setValue]);
+  //주민등록번호와 전화번호의 배열 정규식
 
   return (
-    <Form hasSubmit submitText="회원가입" onSubmit={onSubmit}>
-      <ProfileContainer>
-        <div className="profile_img">
-          <img
-            className="profile_img_item"
-            src={
-              preview.value
-                ? preview.value
-                : "https://img.hankyung.com/photo/201908/BF.20281777.1.jpg"
-            }
-            alt=""
-          />
-        </div>
-        <div className="profile_button">
-          <div style={{ width: "100%" }}>
-            프로필사진
-            <label htmlFor="profile">사진 선택</label>
+    <JoinContainer>
+      <Form hasSubmit submitText="회원가입" onSubmit={onSubmit}>
+        <ProfileContainer>
+          <div className="profile_img">
+            <img
+              className="profile_img_item"
+              src={
+                preview.value
+                  ? preview.value
+                  : "https://img.hankyung.com/photo/201908/BF.20281777.1.jpg"
+              }
+              alt=""
+            />
           </div>
-          <input
-            id="profile"
-            type="file"
-            onChange={handleFileInput}
-            style={{ width: "0px" }}
-          />
-        </div>
-      </ProfileContainer>
-      <OverlapInput>
-        <Input value={id.value} onChange={id.onChange} placeholder="아이디" />
-        <Button>중복확인</Button>
-      </OverlapInput>
-      <Input
-        value={password.value}
-        onChange={password.onChange}
-        placeholder="비밀번호"
-      />
-      <Input
-        value={passwordVerify.value}
-        onChange={passwordVerify.onChange}
-        placeholder="비밀번호 확인"
-      />
-      <Input
-        value={phoneNumber.value}
-        onChange={phoneNumber.onChange}
-        placeholder="전화번호"
-      />
-      <Input
-        value={ssn.value}
-        onChange={ssn.onChange}
-        placeholder="주민등록번호"
-      />
-      <Input value={name.value} onChange={name.onChange} placeholder="이름" />
-      <OverlapInput>
+          <div className="profile_button">
+            <div style={{ width: "100%" }}>
+              프로필사진
+              <label htmlFor="profile">사진 선택</label>
+            </div>
+            <input
+              id="profile"
+              type="file"
+              onChange={handleFileInput}
+              style={{ width: "0px" }}
+            />
+          </div>
+        </ProfileContainer>
+        <OverlapInput>
+          <Input value={id.value} onChange={id.onChange} placeholder="아이디" />
+          <Button>중복확인</Button>
+        </OverlapInput>
         <Input
-          value={nickName.value}
-          onChange={nickName.onChange}
-          placeholder="닉네임"
+          value={password.value}
+          onChange={password.onChange}
+          placeholder="비밀번호"
         />
-        <Button>중복확인</Button>
-      </OverlapInput>
-    </Form>
+        <Input
+          value={passwordVerify.value}
+          onChange={passwordVerify.onChange}
+          placeholder="비밀번호 확인"
+        />
+        <Input
+          value={phoneNumber.value}
+          onChange={phoneNumber.onChange}
+          placeholder="전화번호"
+        />
+        <Input
+          value={ssn.value}
+          onChange={ssn.onChange}
+          placeholder="주민등록번호"
+        />
+        <Input value={name.value} onChange={name.onChange} placeholder="이름" />
+        <OverlapInput>
+          <Input
+            value={nickName.value}
+            onChange={nickName.onChange}
+            placeholder="닉네임"
+          />
+          <Button>중복확인</Button>
+        </OverlapInput>
+      </Form>
+      <div className="agreeForm">
+        <label htmlFor="agree">약관 동의</label>
+        <input
+          value={agree.value}
+          onClick={() => agree.setValue(!agree.value)}
+          type="checkbox"
+          id="agree"
+        />
+      </div>
+    </JoinContainer>
   );
 };
 
