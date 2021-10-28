@@ -8,4 +8,27 @@ export const LoginContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   row-gap: 30px;
+  .or {
+    width: 250%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .text {
+      text-align: center;
+      width: 37px;
+      position: relative;
+      background-color: white;
+      color: #c4c4c4;
+    }
+    .line {
+      width: 250px;
+      position: absolute;
+      z-index: -1;
+      border: 1px solid #c4c4c4;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
 `;

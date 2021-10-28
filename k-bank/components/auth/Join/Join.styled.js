@@ -1,5 +1,22 @@
 import styled from "@emotion/styled";
 
+export const JoinContainer = styled.div`
+  .agreeForm {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    cursor: pointer;
+    label {
+      cursor: pointer;
+    }
+    input {
+      cursor: pointer;
+    }
+  }
+`;
+
 export const OverlapInput = styled.div`
   display: flex;
   width: 100%;

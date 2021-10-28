@@ -12,6 +12,10 @@ const index = () => {
   return (
     <LoginContainer>
       <Login />
+      <div className="or">
+        <div className="text">또는</div>
+        <div className="line" />
+      </div>
       <SimplePwd />
       {keyPadStateValue.isKeyPadOn && <KeyPad submit={trySimpleLogin} />}
       <Link href="join">회원이 아니신가요?</Link>

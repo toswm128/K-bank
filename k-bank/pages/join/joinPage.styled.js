@@ -8,4 +8,8 @@ export const JoinContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   row-gap: 30px;
+  a {
+    text-decoration: none;
+    color: black;
+  }
 `;
