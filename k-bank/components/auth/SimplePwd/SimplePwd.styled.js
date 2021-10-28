@@ -1,9 +1,7 @@
 import styled from "@emotion/styled";
 
 export const SimplePwdContainer = styled.div`
-  input {
-    /* display: none; */
-  }
+  width: 250px;
 `;
 
 export const SimplePwdList = styled.div`

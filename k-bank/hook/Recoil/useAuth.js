@@ -1,10 +1,30 @@
 import { useRecoilState } from "recoil";
-import { isLoginState, tokenState } from "../../states/Auth/AuthState";
+import {
+  idState,
+  isLoginState,
+  passwordState,
+  tokenState,
+} from "../../states/Auth/AuthState";
 import UserAPI from "../../assets/API/UserAPI";
+import useRecoilInput from "./useRecoilInput";
+import useJoin from "./useJoin";
 
 const useAuth = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [token, setToken] = useRecoilState(tokenState);
+
+  const simplePwd = useJoin().simplePwdInput();
+
+  const [id, setId] = useRecoilState(idState);
+  const [password, setPassword] = useRecoilState(passwordState);
+
+  const idInput = () => {
+    return useRecoilInput(id, setId);
+  };
+  const passwordInput = () => {
+    return useRecoilInput(password, setPassword);
+  };
+
   const useLogin = async loginData => {
     try {
       const data = await UserAPI.login(loginData);
@@ -17,7 +37,17 @@ const useAuth = () => {
     console.log(isLogin);
   };
 
-  return { useLogin };
+  const trySimpleLogin = async () => {
+    try {
+      const data = await UserAPI.simpleLogin({ "simple-pwd": simplePwd });
+      setIsLogin(isLogin);
+    } catch (err) {
+      console.log(err);
+      setIsLogin(false);
+    }
+  };
+
+  return { useLogin, idInput, passwordInput, trySimpleLogin };
 };
 
 export default useAuth;

@@ -11,12 +11,10 @@ export const tokenState = atom({
   default: "",
 });
 
-export const postLoginSelector = selector({
-  key: "auth/postLogin",
-  get: ({ get }) => get(UserAPI.login()),
+export const idState = atom({
+  key: "auth/id",
 });
 
-export const getTokenSelector = selector({
-  key: "auth/getToken",
-  get: ({ get }) => get(UserAPI.refreshToken()),
+export const passwordState = atom({
+  key: "auth/password",
 });

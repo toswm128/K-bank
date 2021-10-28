@@ -13,7 +13,7 @@ import {
   simplePwdState,
   ssnState,
 } from "../../states/Auth/JoinState";
-import useRecoilInput from "../useRecoilInput";
+import useRecoilInput from "./useRecoilInput";
 
 const useJoin = () => {
   const [profile, setProfile] = useRecoilState(profileState);

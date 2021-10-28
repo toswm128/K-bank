@@ -5,7 +5,7 @@ import Logo from "../../../assets/images/k-bankBigLogo.svg";
 import Image from "next/image";
 import useInput from "../../../hook/useInput";
 import useAuth from "../../../hook/Recoil/useAuth";
-import axios from "axios";
+import SimplePwd from "../SimplePwd";
 
 const index = () => {
   const { useLogin } = useAuth();
