@@ -1,9 +1,18 @@
 import React from "react";
 import { InputContainer } from "./input.styled";
 
-const index = ({ onChange, className, value, placeholder, onClick, ref }) => {
+const index = ({
+  onChange,
+  className,
+  value,
+  placeholder,
+  onClick,
+  ref,
+  type,
+}) => {
   return (
     <InputContainer
+      type={type}
       onChange={onChange}
       className={className}
       placeholder={placeholder}

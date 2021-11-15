@@ -56,7 +56,7 @@ export const MyAccountInfo = styled.div`
     background-color: white;
     color: #ff355d;
     width: 62.5px;
-    height: 42px;
+    height: auto;
     border-radius: 10px;
   }
   div {

@@ -28,41 +28,44 @@ const index = () => {
   const { checkJoinData } = useJoin();
   const { openKeyPad } = useKeyPad();
 
-  const handleFileInput = useCallback(e => {
-    const imageFileExtensions = [
-      "image/apng",
-      "image/bmp",
-      "image/gif",
-      "image/jpeg",
-      "image/pjpeg",
-      "image/png",
-      "image/svg+xml",
-      "image/tiff",
-      "image/webp",
-      "image/x-icon",
-    ];
-    const file = e.target.files[0];
-    let isValidImageType = true;
+  const handleFileInput = useCallback(
+    e => {
+      const imageFileExtensions = [
+        "image/apng",
+        "image/bmp",
+        "image/gif",
+        "image/jpeg",
+        "image/pjpeg",
+        "image/png",
+        "image/svg+xml",
+        "image/tiff",
+        "image/webp",
+        "image/x-icon",
+      ];
+      const file = e.target.files[0];
+      let isValidImageType = true;
 
-    isValidImageType = imageFileExtensions.includes(file.type);
+      isValidImageType = imageFileExtensions.includes(file.type);
 
-    if (!isValidImageType) {
-      return;
-    }
+      if (!isValidImageType) {
+        return;
+      }
 
-    if (file.length !== 0) {
-      profile.setValue(file);
+      if (file.length !== 0) {
+        profile.setValue(file);
 
-      preview.setValue(URL.createObjectURL(file));
-    }
-  }, []);
+        preview.setValue(URL.createObjectURL(file));
+      }
+    },
+    [preview]
+  );
   // 사진 받기
 
   const onSubmit = () => {
     if (checkJoinData()) {
       openKeyPad();
       router.push("/join/simplePwd");
-    } else alert("정보를 입력해주세요");
+    } else alert("입력정보를 확인해 주세요");
   };
 
   useEffect(() => {
@@ -114,11 +117,13 @@ const index = () => {
           <Button>중복확인</Button>
         </OverlapInput>
         <Input
+          type="password"
           value={password.value}
           onChange={password.onChange}
           placeholder="비밀번호"
         />
         <Input
+          type="password"
           value={passwordVerify.value}
           onChange={passwordVerify.onChange}
           placeholder="비밀번호 확인"
