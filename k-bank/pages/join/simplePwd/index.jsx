@@ -9,7 +9,7 @@ import { useRouter } from "next/dist/client/router";
 const index = () => {
   const router = useRouter();
   const { join } = useJoin();
-  const { keyPadStateValue } = useKeyPad();
+  const { keyPadStateValue, deleteAllKeyPadValue } = useKeyPad();
   return (
     <SimplePwdContainer>
       <h2>간편 비밀번호 6자리를 입력해 주세요</h2>
@@ -18,7 +18,10 @@ const index = () => {
         <KeyPad
           submit={() => {
             join()
-              .then(() => router.push("/login"))
+              .then(() => {
+                router.push("/login");
+                deleteAllKeyPadValue();
+              })
               .catch(err => alert(err));
           }}
         />

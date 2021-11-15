@@ -85,9 +85,29 @@ const useJoin = () => {
   };
 
   const checkJoinData = () => {
-    return (
+    console.log(
       profile & id & password & phoneNumber & ssn & name & nickName & agree
+        ? true
+        : false,
+      profile,
+      id,
+      password,
+      phoneNumber,
+      ssn,
+      name,
+      nickName,
+      agree
     );
+    return profile &&
+      id &&
+      password &&
+      phoneNumber &&
+      ssn &&
+      name &&
+      nickName &&
+      agree
+      ? true
+      : false;
   };
 
   return {

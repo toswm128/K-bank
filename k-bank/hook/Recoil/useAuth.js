@@ -39,8 +39,9 @@ const useAuth = () => {
 
   const trySimpleLogin = async () => {
     try {
-      const data = await UserAPI.simpleLogin({ "simple-pwd": simplePwd });
+      const data = await UserAPI.simpleLogin({ "simple-pwd": simplePwd.value });
       setIsLogin(isLogin);
+      return data;
     } catch (err) {
       console.log(err);
       setIsLogin(false);

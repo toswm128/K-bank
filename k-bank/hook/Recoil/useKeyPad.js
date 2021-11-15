@@ -21,7 +21,11 @@ const useKeyPad = () => {
   };
 
   const deleteSetKeyPadValue = () => {
-    KeyPadValue[0] && setKeyPadValue(KeyPadValue.slice(0, -1));
+    KeyPadValue[0] ? setKeyPadValue(KeyPadValue.slice(0, -1)) : closeKeyPad();
+  };
+
+  const deleteAllKeyPadValue = () => {
+    setKeyPadValue("");
   };
 
   const keyPadStateValue = {
@@ -34,6 +38,7 @@ const useKeyPad = () => {
     closeKeyPad,
     changeSetKeyPadValue,
     deleteSetKeyPadValue,
+    deleteAllKeyPadValue,
     keyPadStateValue,
   };
 };
