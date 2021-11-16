@@ -30,6 +30,7 @@ const useAuth = () => {
       const data = await UserAPI.login(loginData);
       setIsLogin(isLogin);
       setToken(data.token);
+      localStorage.setItem("accessToken", data.token);
     } catch (err) {
       console.log(err);
       setIsLogin(false);
