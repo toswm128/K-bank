@@ -5,14 +5,17 @@ import SERVER from "../config/config.json";
 
 function MyApp({ Component, pageProps }) {
   axios.defaults.baseURL = SERVER.SERVER;
-  axios.defaults.headers["Authorization"] = ``;
+  axios.defaults.headers["Authorization"] = "";
 
   axios.interceptors.request.use(
     async config => {
-      const accessToken = JSON.parse(localStorage.getItem("accessToken"));
-      config.headers = {
-        Authorization: accessToken ? `Bearer ${accessToken}` : null,
-      };
+      const accessToken = localStorage.getItem("accessToken")
+        ? localStorage.getItem("accessToken")
+        : false;
+      if (accessToken) {
+        config.headers.Authorization = accessToken;
+      }
+      console.log(config);
       return config;
     },
     error => {
