@@ -8,6 +8,7 @@ export const KeyPadContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  left: 0;
 `;
 
 export const KeyPadNumList = styled.div`

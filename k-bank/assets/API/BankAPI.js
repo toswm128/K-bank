@@ -2,7 +2,7 @@ import axios from "axios";
 
 class BankAPI {
   async getAccountList() {
-    const { data } = await axios.get("/banking/account");
+    const { data } = await axios.get("/banking/accounts");
     return data;
   }
 
@@ -19,6 +19,10 @@ class BankAPI {
   }
   async checkRemittance() {
     const { data } = await axios.post("/banking/transfer/confirm");
+    return data;
+  }
+  async postAccount(AccountData) {
+    const { data } = await axios.post("/banking/account", AccountData);
     return data;
   }
 }

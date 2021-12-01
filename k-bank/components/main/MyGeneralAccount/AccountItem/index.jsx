@@ -1,8 +1,7 @@
 import React from "react";
 import { AccountItemContainer } from "./AccountItem.styled";
 import Button from "../../../common/Button";
-
-const index = () => {
+const index = ({ account }) => {
   return (
     <AccountItemContainer>
       <div className="bankName">은행이름</div>

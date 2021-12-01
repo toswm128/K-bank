@@ -5,7 +5,6 @@ import Main from "../../components/main/MyAccount";
 import MainButton from "../../components/main/MainButton";
 import MyGeneralAccount from "../../components/main/MyGeneralAccount";
 import useBank from "../../hook/Recoil/useBank";
-import useAuth from "../../hook/Recoil/useAuth";
 import useKeyPad from "../../hook/Recoil/useKeyPad";
 
 const index = () => {
@@ -16,19 +15,17 @@ const index = () => {
   }, []);
   // getAccountList();
   // console.log(keyPadStateValue);
-
   return (
     <MainContainer>
       <Main />
-      <MyGeneralAccount />
+
+      {BankState.accountList.map(account => (
+        <MyGeneralAccount account={account} />
+      ))}
+      <MainButton href="opened" buttonName="계좌개설" />
       <MainButton href="login" buttonName="계좌추가" />
-      <MainButton href="login" buttonName="계추가좌" />
     </MainContainer>
   );
 };
-
-// index.getInitialProps = () => {
-//   return getAccountList();
-// };
 
 export default index;

@@ -2,10 +2,10 @@ import React from "react";
 import AccountItem from "./AccountItem";
 import { MyGeneralAccountContainer } from "./MyGeneralAccount.styled";
 
-const index = () => {
+const index = ({ account }) => {
   return (
     <MyGeneralAccountContainer>
-      <AccountItem />
+      <AccountItem account={account} />
     </MyGeneralAccountContainer>
   );
 };

@@ -5,7 +5,6 @@ import Button from "../../common/Button";
 import { JoinContainer, OverlapInput, ProfileContainer } from "./Join.styled";
 import useInput from "../../../hook/useInput";
 import { useEffect } from "react";
-import useAuth from "../../../hook/Recoil/useAuth";
 import useJoin from "../../../hook/Recoil/useJoin";
 import { useRouter } from "next/dist/client/router";
 import useKeyPad from "../../../hook/Recoil/useKeyPad";

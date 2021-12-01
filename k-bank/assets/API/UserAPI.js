@@ -23,7 +23,7 @@ class UserAPI {
     return data;
   }
   async identity(identityData) {
-    const { data } = await axios.post("user/login/identity", identityData);
+    const { data } = await axios.post("auth/identity", identityData);
     return data;
   }
 }

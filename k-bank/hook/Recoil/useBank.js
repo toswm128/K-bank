@@ -19,7 +19,7 @@ const useBank = () => {
   const getAccountList = async () => {
     try {
       const data = await BankAPI.getAccountList();
-      setAccountList(data);
+      setAccountList(data.accounts);
       setIsAccountList(true);
     } catch (err) {
       setIsAccountList(false);
@@ -38,6 +38,15 @@ const useBank = () => {
     }
   };
 
+  const tryOpenedAccount = async AccountData => {
+    try {
+      const data = await BankAPI.postAccount(AccountData);
+      return data;
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
+
   const BankState = {
     accountList,
     isAccountList,
@@ -45,7 +54,7 @@ const useBank = () => {
     isAccountHistory,
   };
 
-  return { getAccountList, getAccountHistory, BankState };
+  return { getAccountList, getAccountHistory, tryOpenedAccount, BankState };
 };
 
 export default useBank;

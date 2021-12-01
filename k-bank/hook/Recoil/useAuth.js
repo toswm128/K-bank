@@ -50,7 +50,17 @@ const useAuth = () => {
     }
   };
 
-  return { useLogin, idInput, passwordInput, trySimpleLogin };
+  const tryIdentity = async identityData => {
+    try {
+      const data = await UserAPI.identity(identityData);
+      localStorage.setItem("trade_token", data.trade_token);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return { useLogin, idInput, passwordInput, trySimpleLogin, tryIdentity };
 };
 
 export default useAuth;
