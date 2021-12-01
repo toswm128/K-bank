@@ -16,6 +16,10 @@ export const AccountItemContainer = styled.div`
     font-weight: bold;
     font-size: 12px;
   }
+  .account_number {
+    font-size: 12px;
+    font-weight: bold;
+  }
   .money {
     display: flex;
     align-items: center;

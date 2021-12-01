@@ -47,6 +47,15 @@ const useBank = () => {
     }
   };
 
+  const requestTransfer = async transferData => {
+    try {
+      const data = await BankAPI.remittance(transferData);
+      return data;
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
+
   const BankState = {
     accountList,
     isAccountList,
@@ -54,7 +63,13 @@ const useBank = () => {
     isAccountHistory,
   };
 
-  return { getAccountList, getAccountHistory, tryOpenedAccount, BankState };
+  return {
+    getAccountList,
+    getAccountHistory,
+    tryOpenedAccount,
+    requestTransfer,
+    BankState,
+  };
 };
 
 export default useBank;

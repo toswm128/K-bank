@@ -15,9 +15,10 @@ const Account = () => {
   const router = useRouter();
 
   const submit = () => {
-    tryOpenedAccount({ accountName, pwd: keyPadStateValue.KeyPadValue }).then(
-      () => router.push("/main")
-    );
+    tryOpenedAccount({
+      account_nickname: accountName,
+      pwd: keyPadStateValue.KeyPadValue,
+    }).then(() => router.push("/main"));
   };
   const { keyPadStateValue, closeKeyPad, deleteAllKeyPadValue } = useKeyPad();
   useEffect(() => {
